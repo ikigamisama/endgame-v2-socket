@@ -16,7 +16,17 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  console.log("Socket Connected");
+  socket.on("newArenaPlayers", (data) => {
+    io.emit("new_arena_players", data);
+  });
+
+  socket.on("logoutDrafters", (data) => {
+    io.emit("remove-arena-players", data);
+  });
+
+  socket.on("arenaPlayersProceed", (data) => {
+    io.emit("drafters-proceed", data);
+  });
 });
 
 server.listen(PORT, () => {
