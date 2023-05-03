@@ -52,7 +52,7 @@ io.on("connection", (socket) => {
 
   socket.on("characterDraft", (data) => {
     let payload = {};
-    if (data.sequence.length + 1 !== data.sequenceIndex) {
+    if (data.sequenceList.length + 1 !== data.sequenceIndex) {
       payload = {
         draft_id: data.draft_id,
         sequence:
